@@ -1,0 +1,15 @@
+name: 'Test'
+
+
+on:
+  workflow_call:
+
+
+jobs:
+  test:
+    name: 'Test: ${{ github.ref_name }}'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Hello world
+        run: echo "Hello"

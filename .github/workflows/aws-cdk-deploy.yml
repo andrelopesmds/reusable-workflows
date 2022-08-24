@@ -1,0 +1,35 @@
+name: Deploy CDK
+
+
+on:
+  workflow_call:
+    inputs:
+      environment:
+        type: string
+        required: true
+
+
+permissions:
+  id-token: write
+  contents: read
+
+
+jobs:
+  deploy:
+    name: Deploy to ${{ inputs.environment }}
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
+
+    steps:
+      - name: Mocked deployment step
+        run: echo 'Runnig mock deploy from reusable workflows'
+        
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+        
+      - name: Testing login
+        run: aws s3 ls

@@ -1,0 +1,20 @@
+name: Deploy CDK
+
+
+on:
+  workflow_call:
+    inputs:
+      environment:
+        type: string
+        required: true
+
+
+jobs:
+  deploy:
+    name: Deploy to ${{ inputs.environment }}
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
+
+    steps:
+      - name: Mocked deployment step
+        run: echo 'Runnig mock deploy from reusable workflows'

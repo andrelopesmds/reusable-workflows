@@ -32,4 +32,4 @@ jobs:
           aws-region: us-east-1
         
       - name: Testing login
-        run: aws s3 ls
+        run: aws cloudformation list-stacks 

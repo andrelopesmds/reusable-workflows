@@ -21,6 +21,14 @@ jobs:
     environment: ${{ inputs.environment }}
 
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Nodejs
+        uses: actions/setup-node@v1
+        with:
+          node-version: '14.x'
+
       - name: Mocked deployment step
         run: echo 'Runnig mock deploy from reusable workflows'
         
@@ -32,4 +40,7 @@ jobs:
           aws-region: us-east-1
         
       - name: Testing login
-        run: aws cloudformation list-stacks 
+        run: aws cloudformation list-stacks
+
+      - name: Deploy
+        run: yarn deploy

@@ -27,10 +27,10 @@ jobs:
       - name: Setup Nodejs
         uses: actions/setup-node@v1
         with:
-          node-version: '14.x'
+          node-version: 16
 
-      - name: Mocked deployment step
-        run: echo 'Runnig mock deploy from reusable workflows'
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
         
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1

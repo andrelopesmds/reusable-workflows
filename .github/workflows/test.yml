@@ -11,5 +11,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Hello world
-        run: echo "Hello from test.yml of reusable workflows"
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Nodejs
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Test
+        run: yarn test

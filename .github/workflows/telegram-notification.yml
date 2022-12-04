@@ -1,0 +1,25 @@
+name: Telegram notification
+
+on:
+  workflow_call:
+    inputs:
+      message:
+        type: string
+        required: true
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  notification:
+    name: Notification
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send telegram notification
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_CHAT_ID }}
+          token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          message: |
+            ${{ inputs.message }}
